@@ -85,20 +85,21 @@
             event.preventDefault();
 
             let inputValues = {
-                name: $('reserve_name').val(),
-                phone: $('reserve_phone').val(),
-                email: $('reserve_email').val(),
-                id: $('reserve_uniqueID').val()
+                name: $('#reserve_name').val(),
+                phone: $('#reserve_phone').val(),
+                email: $('#reserve_email').val(),
+                id: $('#reserve_uniqueID').val()
             }
 
             reservation.push(inputValues);
-            console.log(this.name);
-            console.log(this.phone);
-            console.log(this.email);
-            console.log(this.id);
+            console.log(inputValues.name);
+            console.log(inputValues.phone);
+            console.log(inputValues.email);
+            console.log(inputValues.id);
+            console.log(reservation);
         })
 
-        console.log(reservation);
+        
     </script>
 
 </body>
