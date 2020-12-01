@@ -91,14 +91,14 @@
 
 			$.post("/api/reservations", newRes)
 			.then(function(data) {
-				console.log("added reservation", data);
-				alert("Making Reservation...");
+				console.log(data);
+				alert('All done!');
 			});
 		});
 	</script>
 
    
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
 
         let reservation = [];
 
@@ -125,7 +125,7 @@
         })
 
         
-    </script>
+    </script> -->
 
 
 </body>

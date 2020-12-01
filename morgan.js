@@ -53,7 +53,7 @@ app.post("/api/reservations", function(req, res) {
         res.json('Made Reservation');
     }
     else {
-        waitlist.push(newRes)
+        waitlist.push(newRes);
         res.json('Put on Waitlist');
     }
 });
