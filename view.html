@@ -35,6 +35,9 @@
 						<h4 class="panel-title">Current Reservations</h4>
 					</div>
 					<div class="panel-body" id="tableSection">
+						<ol id="reservations-list">
+
+						</ol>
 					</div>
 				</div>
 
@@ -44,6 +47,9 @@
 						<h4 class="panel-title">Waiting List</h4>
 					</div>
 					<div class="panel-body" id="waitlistSection">
+						<ol id="waitlist-list">
+
+						</ol>
 					</div>
 				</div>
 			</div>
@@ -53,13 +59,35 @@
 	    <footer class="footer">
 	      <div class="container">
 	      	<p>Control Panel</p>
-	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/reservations">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
 	      </div>
 	    </footer>
 
     </div>
     
-    <script type="text/javascript">
+	<script type="text/javascript">
+	
+		$.get("/api/reservations", function(data, status) {
+			console.log(data);
+			console.log(status);
+			console.log(data[0]);
+			console.log(data[0].name);
+			for (i=0; i<data.length; i++) {
+				var name = data[i].name;
+				$("#reservations-list").append('<li>'+name+'</li>');
+			}
+		});
+
+		$.get("/api/waitlist", function(data, status) {
+			console.log(data);
+			console.log(status);
+			console.log(data[0]);
+			console.log(data[0].name);
+			for (i=0; i<data.length; i++) {
+				var name = data[i].name;
+				$("#reservations-list").append('<li>'+name+'</li>');
+			}
+		});
         
     </script>
 

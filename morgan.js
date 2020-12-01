@@ -1,4 +1,5 @@
 var express = require("express");
+const { get } = require("http");
 var path = require("path");
 
 var app = express();
@@ -14,8 +15,16 @@ var reservations = [
       phoneNumber: "666-666-6666",
       email: 'b@b.com',
       id: 2000
+    },
+    {
+        name: "Brandon",
+        phoneNumber: "999-999-9999",
+        email: "idiot@idiot.com",
+        id: 3000
     }
 ];
+
+var waitlist = [];
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
@@ -35,8 +44,12 @@ app.get("/api/reservations", function(req, res) {
     return res.json(reservations);
 });
 
+app.get("/api/waitlist", function(req, res) {
+    return res.json(waitlist)
+})
+
 // Create new reservation - takes in JSON input
-app.post("/api/reservation", function(req, res) {
+app.post("/api/reservations", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
     var newRes = req.body;
