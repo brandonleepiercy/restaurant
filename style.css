@@ -1,0 +1,8 @@
+.jumbotron, 
+.lead {
+    text-align: center;
+}
+
+#reservation {
+    background-color: red;
+}
