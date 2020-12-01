@@ -91,14 +91,18 @@
 
 			$.post("/api/reservations", newRes)
 			.then(function(data) {
-				console.log("added reservation", data);
-				alert("Making Reservation...");
+				if (data === 'Made Reservation') {
+					alert("Your table has been reserved");
+				}
+				else {
+					alert('All reservations are full, you have been put on the waitlist');
+				}
 			});
 		});
 	</script>
 
    
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
 
         let reservation = [];
 
@@ -125,7 +129,7 @@
         })
 
         
-    </script>
+    </script> -->
 
 
 </body>
