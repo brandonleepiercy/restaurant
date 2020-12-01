@@ -23,6 +23,8 @@ var reservations = [
         id: 3000
     }
 ];
+// Waitlist
+const waitlist = [];
 
 var waitlist = [];
 
@@ -44,9 +46,10 @@ app.get("/api/reservations", function(req, res) {
     return res.json(reservations);
 });
 
-app.get("/api/waitlist", function(req, res) {
-    return res.json(waitlist)
-})
+app.get('/api/waitlist', function(req,res) {
+    return res.json(waitlist);
+});
+
 
 // Create new reservation - takes in JSON input
 app.post("/api/reservations", function(req, res) {
@@ -55,10 +58,14 @@ app.post("/api/reservations", function(req, res) {
     var newRes = req.body;
   
     console.log(newRes);
-  
-    reservations.push(newRes);
-  
-    res.json(newRes);
+    if (reservations.length < 5) {
+        reservations.push(newRes);
+        res.json('Made Reservation');
+    }
+    else {
+        waitlist.push(newRes)
+        res.json('Put on Waitlist');
+    }
 });
 
 // Server Starts to listen

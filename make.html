@@ -40,25 +40,27 @@
 
 							<div class="form-group">
 								<label for="">Name</label>
-								<input type="text" class="form-control" id="reserve_name">
+								<input type="text" class="form-control" id="name">
 							</div>
 
 							<div class="form-group">
 								<label for="">Phone Number</label>
-								<input type="text" class="form-control" id="reserve_phone">
+								<input type="text" class="form-control" id="phone-number">
 							</div>
 
 							<div class="form-group">
 								<label for="">Email</label>
-								<input type="text" class="form-control" id="reserve_email">
+								<input type="text" class="form-control" id="email">
 							</div>
 
 							<div class="form-group">
 								<label for="">Unique ID</label>
-								<input type="text" class="form-control" id="reserve_uniqueID">
+								<input type="text" class="form-control" id="id">
 							</div>
 
-							<button id="submit" type="submit" class="btn btn-primary submit">Submit</button>
+
+							<button type="submit" id="add-btn" class="btn btn-primary submit">Submit</button>
+
 						</form>
 
 					</div>
@@ -75,6 +77,26 @@
 	    </footer>
 
     </div>
+
+	
+	<script>
+		$("#add-btn").on("click", function(event) {
+			event.preventDefault();
+			var newRes = {
+				name: $("#name").val().trim(),
+				phoneNumber: $("#phone-number").val().trim(),
+				email: $("#email").val().trim(),
+				id: $("#id").val().trim()
+			};
+
+			$.post("/api/reservations", newRes)
+			.then(function(data) {
+				console.log("added reservation", data);
+				alert("Making Reservation...");
+			});
+		});
+	</script>
+
    
     <script type="text/javascript">
 
@@ -85,21 +107,26 @@
             event.preventDefault();
 
             let inputValues = {
-                name: $('reserve_name').val(),
-                phone: $('reserve_phone').val(),
-                email: $('reserve_email').val(),
-                id: $('reserve_uniqueID').val()
+                name: $('#reserve_name').val(),
+                phone: $('#reserve_phone').val(),
+                email: $('#reserve_email').val(),
+                id: $('#reserve_uniqueID').val()
             }
 
             reservation.push(inputValues);
-            console.log(this.name);
-            console.log(this.phone);
-            console.log(this.email);
-            console.log(this.id);
+            console.log(reservation);
+
+
+            $('#reserve_name').val('');
+            $('#reserve_phone').val('');
+            $('#reserve_email').val('');
+            $('#reserve_uniqueID').val('');
+
         })
 
-        console.log(reservation);
+        
     </script>
+
 
 </body>
 </html>
