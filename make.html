@@ -40,25 +40,27 @@
 
 							<div class="form-group">
 								<label for="">Name</label>
-								<input type="text" class="form-control" id="reserve_name">
+								<input type="text" class="form-control" id="name">
 							</div>
 
 							<div class="form-group">
 								<label for="">Phone Number</label>
-								<input type="text" class="form-control" id="reserve_phone">
+								<input type="text" class="form-control" id="phone-number">
 							</div>
 
 							<div class="form-group">
 								<label for="">Email</label>
-								<input type="text" class="form-control" id="reserve_email">
+								<input type="text" class="form-control" id="email">
 							</div>
 
 							<div class="form-group">
 								<label for="">Unique ID</label>
-								<input type="text" class="form-control" id="reserve_uniqueID">
+								<input type="text" class="form-control" id="id">
 							</div>
 
-							<button id="submit" type="submit" class="btn btn-primary submit">Submit</button>
+
+							<button type="submit" id="add-btn" class="btn btn-primary submit">Submit</button>
+
 						</form>
 
 					</div>
@@ -70,11 +72,31 @@
 
 	    <footer class="footer">
 	      <div class="container">
-	        <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> </p>
+	        <p><a href="/api/reservations">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> </p>
 	      </div>
 	    </footer>
 
     </div>
+
+	
+	<script>
+		$("#add-btn").on("click", function(event) {
+			event.preventDefault();
+			var newRes = {
+				name: $("#name").val().trim(),
+				phoneNumber: $("#phone-number").val().trim(),
+				email: $("#email").val().trim(),
+				id: $("#id").val().trim()
+			};
+
+			$.post("/api/reservations", newRes)
+			.then(function(data) {
+				console.log("added reservation", data);
+				alert("Making Reservation...");
+			});
+		});
+	</script>
+
    
     <script type="text/javascript">
 
@@ -104,6 +126,7 @@
 
         
     </script>
+
 
 </body>
 </html>
