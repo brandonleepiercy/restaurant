@@ -16,6 +16,8 @@ var reservations = [
       id: 2000
     }
 ];
+// Waitlist
+const waitlist = [];
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
@@ -35,17 +37,25 @@ app.get("/api/reservations", function(req, res) {
     return res.json(reservations);
 });
 
+app.get('/api/waitlist', function(req,res) {
+    return res.json(waitlist);
+});
+
 // Create new reservation - takes in JSON input
-app.post("/api/reservation", function(req, res) {
+app.post("/api/reservations", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
     var newRes = req.body;
   
     console.log(newRes);
-  
-    reservations.push(newRes);
-  
-    res.json(newRes);
+    if (reservations.length < 5) {
+        reservations.push(newRes);
+        res.json('Made Reservation');
+    }
+    else {
+        waitlist.push(newRes)
+        res.json('Put on Waitlist');
+    }
 });
 
 // Server Starts to listen
