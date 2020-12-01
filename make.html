@@ -58,7 +58,9 @@
 								<input type="text" class="form-control" id="id">
 							</div>
 
+
 							<button type="submit" id="add-btn" class="btn btn-primary submit">Submit</button>
+
 						</form>
 
 					</div>
@@ -75,6 +77,7 @@
 	    </footer>
 
     </div>
+
 	
 	<script>
 		$("#add-btn").on("click", function(event) {
@@ -93,6 +96,37 @@
 			});
 		});
 	</script>
+
+   
+    <script type="text/javascript">
+
+        let reservation = [];
+
+        $('#submit').on("click", function(event){
+        
+            event.preventDefault();
+
+            let inputValues = {
+                name: $('#reserve_name').val(),
+                phone: $('#reserve_phone').val(),
+                email: $('#reserve_email').val(),
+                id: $('#reserve_uniqueID').val()
+            }
+
+            reservation.push(inputValues);
+            console.log(reservation);
+
+
+            $('#reserve_name').val('');
+            $('#reserve_phone').val('');
+            $('#reserve_email').val('');
+            $('#reserve_uniqueID').val('');
+
+        })
+
+        
+    </script>
+
 
 </body>
 </html>
